@@ -1,48 +1,60 @@
 <?php
 // показывать или нет выполненные задачи
 $show_complete_tasks = rand(0, 1);
+
 // Project names array
-$projects = ['Входящие', 'Учёба', 'Работа', 'Домашние дела', 'Авто'];
+$projects = [
+    'inbox' => 'Входящие',
+    'study' => 'Учёба',
+    'work' => 'Работа',
+    'personal' => 'Домашние дела',
+    'car' => 'Авто'
+];
+
 // Tasks array
 $tasks = [
     [
         'title' => 'Собеседование в IT компании',
         'due' => '01.12.2019',
-        'project' => 'Работа',
+        'project' => $projects['inbox'],
         'done' => false
-    ],
-    [
+    ], [
         'title' => 'Выполнить тестовое задание',
         'due' => '25.12.2019',
-        'project' => 'Работа',
+        'project' => $projects['work'],
         'done' => false
-    ],
-    [
+    ], [
         'title' => 'Сделать задание первого раздела',
         'due' => '21.12.2019',
-        'project' => 'Учёба',
+        'project' => $projects['study'],
         'done' => false
-    ],
-    [
+    ], [
         'title' => 'Встреча с другом',
         'due' => '22.12.2019',
-        'project' => 'Входящие',
+        'project' => $projects['inbox'],
         'done' => true
-    ],
-    [
+    ], [
         'title' => 'Купить корм для кота',
         'due' => NULL,
-        'project' => 'Домашние дела',
+        'project' => $projects['personal'],
         'done' => false
-    ],
-    [
+    ], [
         'title' => 'Заказать пиццу',
         'due' => NULL,
-        'project' => 'Домашние дела',
+        'project' => $projects['personal'],
         'done' => false
     ]
 ];
+
+function calculateProjects($tasksArr, $projectName) {
+    $tasksCount = 0;
+    foreach ($tasksArr as $task) {
+        $tasksCount += ($task['project'] === $projectName) ? 1 : 0;
+    }
+    return $tasksCount;
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -89,8 +101,10 @@ $tasks = [
                     <ul class="main-navigation__list">
                         <?php foreach ($projects as $project): ?>
                             <li class="main-navigation__list-item">
-                                <a class="main-navigation__list-item-link" href="#"><?=$project;?></a>
-                                <span class="main-navigation__list-item-count">0</span>
+                                <a class="main-navigation__list-item-link" href="#"><?= $project; ?></a>
+                                <span class="main-navigation__list-item-count">
+                                    <?= calculateProjects($tasks, $project); ?>
+                                </span>
                             </li>
                         <?php endforeach; ?>
                     </ul>
@@ -119,18 +133,14 @@ $tasks = [
 
                     <label class="checkbox">
                         <!--добавить сюда аттрибут "checked", если переменная $show_complete_tasks равна единице-->
-                        <input class="checkbox__input visually-hidden show_completed" type="checkbox" <?=$show_complete_tasks ? 'checked' : '';?>>
+                        <input class="checkbox__input visually-hidden show_completed" type="checkbox" <?= $show_complete_tasks ? 'checked' : '';?>>
                         <span class="checkbox__text">Показывать выполненные</span>
                     </label>
                 </div>
 
                 <table class="tasks">
-                    <?php
-                        foreach ($tasks as $task) {
-                            if (!$show_complete_tasks && $task['done']) {
-                                continue;
-                            } else {
-                    ?>
+                    <?php foreach ($tasks as $task): ?>
+                    <?php if ($show_complete_tasks || !$task['done']): ?>
 
                         <tr class="tasks__item task">
                             <td class="task__select">
@@ -150,10 +160,8 @@ $tasks = [
                             </td>
                         </tr>
 
-                    <?php
-                            }
-                        }
-                    ?>
+                    <?php endif; ?>
+                    <?php endforeach; ?>
                 </table>
             </main>
         </div>
