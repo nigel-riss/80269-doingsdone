@@ -25,4 +25,38 @@ function include_template($name, $data) {
 
     return $result;
 }
+
+
+/**
+ * calculateTasks
+ * Calculates tasks in a project
+ *
+ * @param  array $tasksArr
+ * @param  string $projectName
+ *
+ * @return int
+ */
+function calculateTasks($tasksArr, $projectName) {
+    $tasksCount = 0;
+    foreach ($tasksArr as $task) {
+        $tasksCount += ($task['project'] === $projectName) ? 1 : 0;
+    }
+    return $tasksCount;
+}
+
+
+/**
+ * escapeHtml
+ * Filters HTML in input text
+ *
+ * @param  string $string
+ *
+ * @return string
+ */
+function escapeHtml($string) {
+    $text = htmlspecialchars($string);
+    // $text = strip_tags($string);
+
+    return $text;
+}
 ?>

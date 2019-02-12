@@ -1,13 +1,3 @@
-<?php
-function calculateProjects($tasksArr, $projectName) {
-    $tasksCount = 0;
-    foreach ($tasksArr as $task) {
-        $tasksCount += ($task['project'] === $projectName) ? 1 : 0;
-    }
-    return $tasksCount;
-}
-?>
-
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -54,9 +44,9 @@ function calculateProjects($tasksArr, $projectName) {
                     <ul class="main-navigation__list">
                         <?php foreach ($projects as $project): ?>
                             <li class="main-navigation__list-item">
-                                <a class="main-navigation__list-item-link" href="#"><?= $project; ?></a>
+                                <a class="main-navigation__list-item-link" href="#"><?= escapeHtml($project); ?></a>
                                 <span class="main-navigation__list-item-count">
-                                    <?= calculateProjects($tasks, $project); ?>
+                                    <?= calculateTasks($tasks, escapeHtml($project)); ?>
                                 </span>
                             </li>
                         <?php endforeach; ?>
