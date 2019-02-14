@@ -16,32 +16,32 @@ $projects = [
 $tasks = [
     [
         'title' => 'Собеседование в IT компании',
-        'due' => '01.12.2019',
+        'due' => 1575165600,
         'project' => $projects['inbox'],
         'done' => false
     ], [
         'title' => 'Выполнить тестовое задание',
-        'due' => '25.12.2019',
+        'due' => 1577239200,
         'project' => $projects['work'],
         'done' => false
     ], [
         'title' => 'Сделать задание первого раздела',
-        'due' => '21.12.2019',
+        'due' => 1576893600,
         'project' => $projects['study'],
         'done' => false
     ], [
         'title' => 'Встреча с другом',
-        'due' => '22.12.2019',
+        'due' => 1576980000,
         'project' => $projects['inbox'],
         'done' => true
     ], [
         'title' => 'Купить корм для кота',
-        'due' => NULL,
+        'due' => null,
         'project' => $projects['personal'],
         'done' => false
     ], [
         'title' => 'Заказать пиццу',
-        'due' => NULL,
+        'due' => 1550104008,
         'project' => $projects['personal'],
         'done' => false
     ]

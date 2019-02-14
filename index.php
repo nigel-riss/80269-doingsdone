@@ -1,7 +1,9 @@
 <?php
+date_default_timezone_get('Etc/GMT');
 
 require_once('functions.php');
 require_once('data.php');
+
 
 $page_content = include_template('index.php', [
     'show_complete_tasks' => $show_complete_tasks,

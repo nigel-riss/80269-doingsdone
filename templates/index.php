@@ -25,7 +25,7 @@
     <?php foreach ($tasks as $task): ?>
     <?php if ($show_complete_tasks || !$task['done']): ?>
 
-        <tr class="tasks__item task">
+        <tr class="tasks__item task <?= checkDeadline24($task['due']) ? 'task--important':''; ?>">
             <td class="task__select">
                 <label class="checkbox task__checkbox">
                     <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1" <?= $task['done'] ? 'checked' : ''; ?>>
@@ -37,7 +37,7 @@
                 <a class="download-link" href="#">Home.psd</a>
             </td> -->
 
-            <td class="task__date"><?= $task['due'] ? $task['due'] : 'Нет'; ?></td>
+            <td class="task__date"><?= $task['due'] ? date('d.m.Y', $task['due'] ) : 'Нет'; ?></td>
 
             <td class="task__controls">
             </td>
