@@ -59,4 +59,26 @@ function escapeHtml($string) {
 
     return $text;
 }
+
+
+/**
+ * checkDeadline24
+ * Checks if it is less then 24 hours to deadline
+ *
+ * @param  int $date
+ *
+ * @return boolean
+ */
+function checkDeadline24($date) {
+    // return false is there is no due date
+    if ($date === null) {
+        return false;
+    }
+
+    $currTimestamp= time();
+    $secondsLeft = $date - $currTimestamp;
+    $hoursLeft = floor($secondsLeft / 3600);
+
+    return $hoursLeft < 24;
+}
 ?>
