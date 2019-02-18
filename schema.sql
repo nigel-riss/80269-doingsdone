@@ -5,28 +5,28 @@ CREATE DATABASE doingsdone
 USE doingsdone;
 
 CREATE TABLE projects (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name CHAR(128),
-    author INT
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(128),
+    author_id INT UNSIGNED
 );
 
 CREATE TABLE tasks (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     date_finished TIMESTAMP,
     state TINYINT DEFAULT 0,
-    description CHAR(255),
-    filename CHAR(255),
+    description VARCHAR(255),
+    filename VARCHAR(255),
     date_due TIMESTAMP,
-    author INT,
-    project INT
+    author_id INT UNSIGNED,
+    project_id INT UNSIGNED
 );
 
 CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     date_register TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    email CHAR(255),
-    name CHAR(255),
-    pass CHAR(255)
+    email VARCHAR(255),
+    name VARCHAR(255),
+    password_hash VARCHAR(255)
 );
 
