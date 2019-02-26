@@ -23,13 +23,13 @@
 
 <table class="tasks">
     <?php foreach ($tasks as $task): ?>
-    <?php if ($show_complete_tasks || !$task['done']): ?>
+    <?php if ($show_complete_tasks || !($task['state'] == 1)): ?>
 
-        <tr class="tasks__item task <?= checkDeadline24($task['due']) ? 'task--important':''; ?>">
+        <tr class="tasks__item task <?= checkDeadline24(strtotime($task['date_due'])) ? 'task--important':''; ?>">
             <td class="task__select">
                 <label class="checkbox task__checkbox">
-                    <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1" <?= $task['done'] ? 'checked' : ''; ?>>
-                    <span class="checkbox__text"><?= escapeHtml($task['title']); ?></span>
+                    <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1" <?= $task['state'] ? 'checked' : ''; ?>>
+                    <span class="checkbox__text"><?= escapeHtml($task['description']); ?></span>
                 </label>
             </td>
 
@@ -37,7 +37,7 @@
                 <a class="download-link" href="#">Home.psd</a>
             </td> -->
 
-            <td class="task__date"><?= $task['due'] ? date('d.m.Y', $task['due'] ) : 'Нет'; ?></td>
+            <td class="task__date"><?= $task['date_due'] ? date('d.m.Y', strtotime($task['date_due'])) : 'Нет'; ?></td>
 
             <td class="task__controls">
             </td>

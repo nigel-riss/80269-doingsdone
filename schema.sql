@@ -14,7 +14,7 @@ CREATE TABLE tasks (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     date_finished TIMESTAMP,
-    state BYTE(1) DEFAULT 0,
+    state TINYINT(1) DEFAULT 0,
     description VARCHAR(255),
     filename VARCHAR(255),
     date_due TIMESTAMP,

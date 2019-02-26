@@ -32,14 +32,14 @@ function include_template($name, $data) {
  * Calculates tasks in a project
  *
  * @param  array $tasksArr
- * @param  string $projectName
+ * @param  integer $projectName
  *
  * @return int
  */
-function calculateTasks($tasksArr, $projectName) {
+function calculateTasks($tasksArr, $projectId) {
     $tasksCount = 0;
     foreach ($tasksArr as $task) {
-        $tasksCount += ($task['project'] === $projectName) ? 1 : 0;
+        $tasksCount += ($task['project_id'] === $projectId) ? 1 : 0;
     }
     return $tasksCount;
 }
@@ -71,7 +71,7 @@ function escapeHtml($string) {
  */
 function checkDeadline24($date) {
     // return false is there is no due date
-    if ($date === null) {
+    if ($date == null ) {
         return false;
     }
 
