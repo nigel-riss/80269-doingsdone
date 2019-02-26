@@ -46,7 +46,7 @@
                             <li class="main-navigation__list-item">
                                 <a class="main-navigation__list-item-link" href="#"><?= escapeHtml($project['name']); ?></a>
                                 <span class="main-navigation__list-item-count">
-                                    <?= calculateTasks($tasks, escapeHtml($project['name'])); ?>
+                                    <?= calculateTasks($tasks, escapeHtml($project['id'])); ?>
                                 </span>
                             </li>
                         <?php endforeach; ?>
