@@ -71,7 +71,7 @@ function escapeHtml($string) {
  */
 function checkDeadline24($date) {
     // return false is there is no due date
-    if ($date == null ) {
+    if ($date === '') {
         return false;
     }
 
