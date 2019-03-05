@@ -44,11 +44,11 @@
                     <ul class="main-navigation__list">
                         <?php foreach ($projects as $project): ?>
                             <li class="main-navigation__list-item">
-                                <a class="main-navigation__list-item-link" href="/index.php?project=<?= escapeHtml($project['id']); ?>">
-                                    <?= escapeHtml($project['name']); ?>
+                                <a class="main-navigation__list-item-link" href="/index.php?project=<?= escape_html($project['id']); ?>">
+                                    <?= escape_html($project['name']); ?>
                                 </a>
                                 <span class="main-navigation__list-item-count">
-                                    <?= calculateTasks($tasks, escapeHtml($project['id'])); ?>
+                                    <?= calculate_tasks($tasks, escape_html($project['id'])); ?>
                                 </span>
                             </li>
                         <?php endforeach; ?>
