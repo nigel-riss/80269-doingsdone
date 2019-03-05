@@ -4,8 +4,6 @@ date_default_timezone_get('Etc/GMT');
 require_once('functions.php');
 require_once('data.php');
 
-$user_error = '';
-
 $user_id = 1;
 
 $connection = mysqli_connect('localhost', 'root', '', 'doingsdone');
