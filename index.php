@@ -66,6 +66,8 @@ if ($projects_rows && $tasks_rows) {
     ]);
 
     echo $layout_content;
+} else {
+    throw_user_error(500, 'Ошибка сервера');
 }
 
 ?>
