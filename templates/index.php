@@ -23,13 +23,14 @@
 
 <table class="tasks">
     <?php foreach ($tasks as $task): ?>
-    <?php if ($show_complete_tasks || !($task['state'] == 1)): ?>
+    <?php if (($show_complete_tasks || !($task['state'] == 1)) 
+            && ($task['project_id'] == $project_id) || ($project_id == 0)): ?>
 
-        <tr class="tasks__item task <?= checkDeadline24(strtotime($task['date_due'])) ? 'task--important':''; ?>">
+        <tr class="tasks__item task <?= check_deadline_24h(strtotime($task['date_due'])) ? 'task--important':''; ?>">
             <td class="task__select">
                 <label class="checkbox task__checkbox">
                     <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1" <?= $task['state'] ? 'checked' : ''; ?>>
-                    <span class="checkbox__text"><?= escapeHtml($task['description']); ?></span>
+                    <span class="checkbox__text"><?= escape_html($task['description']); ?></span>
                 </label>
             </td>
 

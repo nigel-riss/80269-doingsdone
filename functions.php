@@ -28,7 +28,7 @@ function include_template($name, $data) {
 
 
 /**
- * calculateTasks
+ * calculate_tasks
  * Calculates tasks in a project
  *
  * @param  array $tasksArr
@@ -36,7 +36,7 @@ function include_template($name, $data) {
  *
  * @return int
  */
-function calculateTasks($tasksArr, $projectId) {
+function calculate_tasks($tasksArr, $projectId) {
     $tasksCount = 0;
     foreach ($tasksArr as $task) {
         $tasksCount += ($task['project_id'] === $projectId) ? 1 : 0;
@@ -46,14 +46,14 @@ function calculateTasks($tasksArr, $projectId) {
 
 
 /**
- * escapeHtml
+ * escape_html
  * Filters HTML in input text
  *
  * @param  string $string
  *
  * @return string
  */
-function escapeHtml($string) {
+function escape_html($string) {
     $text = htmlspecialchars($string);
     // $text = strip_tags($string);
 
@@ -62,16 +62,16 @@ function escapeHtml($string) {
 
 
 /**
- * checkDeadline24
+ * check_deadline_24h
  * Checks if it is less then 24 hours to deadline
  *
  * @param  int $date
  *
  * @return boolean
  */
-function checkDeadline24($date) {
+function check_deadline_24h($date) {
     // return false is there is no due date
-    if ($date == null ) {
+    if ($date === '') {
         return false;
     }
 
@@ -81,4 +81,44 @@ function checkDeadline24($date) {
 
     return $hoursLeft < 24;
 }
+
+
+/**
+ * throw_user_error
+ * Set http response code, prints error text and exit script
+ *
+ * @param  int $error_code
+ * @param  string $error_tex
+ *
+ */
+function throw_user_error($error_code, $error_text) {
+    http_response_code($error_code);
+    echo $error_text;
+    exit;
+}
+
+
+/**
+ * send_sql_request
+ * Send mysql request using existing connection
+ *
+ * @param  mysqli $connection
+ * @param  string $sql_request
+ *
+ * @return Array 
+ */
+function send_sql_request($connection, $sql_request) {
+    $result = [];
+    $sql_result = mysqli_query($connection, $sql_request);
+    if (!$sql_result) {
+        $error = mysqli_error($connection);
+        throw_user_error(500, 'Ошибка MySQL: ' . $error);
+    } else {
+        $result = mysqli_fetch_all($sql_result, MYSQLI_ASSOC);
+    }
+
+    return $result;
+}
+
+
 ?>
