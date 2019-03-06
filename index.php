@@ -27,7 +27,7 @@ if ($connection == false) {
 
         // Checking if proper request
         if ($project_id <= 0) {
-            throw_user_error(404, 'Ошибка 404: По данному запросу задач не найдено.');
+            response_with_code(404, 'Ошибка 404: По данному запросу задач не найдено.');
         }
 
         // Checking if any tasks for the project
@@ -36,7 +36,7 @@ if ($connection == false) {
         $tasks_count_sql = "SELECT COUNT(*) FROM tasks WHERE author_id =" . $user_id . " AND project_id =" . $project_id;
         $tasks_count = (int)send_sql_request($connection, $tasks_count_sql)[0]['COUNT(*)'];
         if ($tasks_count <= 0) {
-            throw_user_error(404, 'Ошибка 404: По данному запросу задач не найдено.');
+            response_with_code(404, 'Ошибка 404: По данному запросу задач не найдено.');
         }
     } else {
         $project_id = 0;
@@ -65,7 +65,7 @@ if ($projects_rows && $tasks_rows) {
 
     echo $layout_content;
 } else {
-    throw_user_error(500, 'Ошибка сервера');
+    response_with_code(500, 'Ошибка сервера');
 }
 
 ?>

@@ -84,14 +84,14 @@ function check_deadline_24h($date) {
 
 
 /**
- * throw_user_error
+ * response_with_code
  * Set http response code, prints error text and exit script
  *
  * @param  int $error_code
  * @param  string $error_tex
  *
  */
-function throw_user_error($error_code, $error_text) {
+function response_with_code($error_code, $error_text) {
     http_response_code($error_code);
     echo $error_text;
     exit;
@@ -112,7 +112,7 @@ function send_sql_request($connection, $sql_request) {
     $sql_result = mysqli_query($connection, $sql_request);
     if (!$sql_result) {
         $error = mysqli_error($connection);
-        throw_user_error(500, 'Ошибка MySQL: ' . $error);
+        response_with_code(500, 'Ошибка MySQL: ' . $error);
     } else {
         $result = mysqli_fetch_all($sql_result, MYSQLI_ASSOC);
     }
