@@ -48,7 +48,8 @@
                                     <?= escape_html($project['name']); ?>
                                 </a>
                                 <span class="main-navigation__list-item-count">
-                                    <?= calculate_tasks($tasks, escape_html($project['id'])); ?>
+                                    <!-- <?= calculate_tasks($tasks, escape_html($project['id'])); ?> -->
+                                    999пше
                                 </span>
                             </li>
                         <?php endforeach; ?>
