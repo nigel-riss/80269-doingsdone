@@ -31,17 +31,15 @@ function include_template($name, $data) {
  * calculate_tasks
  * Calculates tasks in a project
  *
- * @param  array $tasksArr
- * @param  integer $projectName
+ * @param  integer $user_id
+ * @param  integer $project_id
  *
  * @return int
  */
-function calculate_tasks($tasksArr, $projectId) {
-    $tasksCount = 0;
-    foreach ($tasksArr as $task) {
-        $tasksCount += ($task['project_id'] === $projectId) ? 1 : 0;
-    }
-    return $tasksCount;
+function calculate_tasks($connection, $user_id, $project_id) {
+    $tasks_count_sql = "SELECT COUNT(*) FROM tasks WHERE author_id =" . $user_id . " AND project_id =" . $project_id;
+    $tasks_count = (int)send_sql_request($connection, $tasks_count_sql)[0]['COUNT(*)'];
+    return $tasks_count;
 }
 
 

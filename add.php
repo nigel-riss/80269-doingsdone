@@ -1,5 +1,8 @@
 <?php
 
+require_once('functions.php');
+require_once('data.php');
+
 $user_id = 1;
 
 $connection = mysqli_connect('localhost', 'root', '', 'doingsdone');
@@ -21,9 +24,7 @@ if ($connection == false) {
 // Rendering page
 if ($projects_rows) {
     $page_content = include_template('add.php', [
-        // 'show_complete_tasks' => $show_complete_tasks,
-        // 'tasks' => $tasks_rows,
-        // 'project_id' => $project_id
+        'projects' => $projects_rows
     ]);
 
     $layout_content = include_template('layout.php', [

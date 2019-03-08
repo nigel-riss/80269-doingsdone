@@ -56,6 +56,15 @@ if ($projects_rows && $tasks_rows) {
         'project_id' => $project_id
     ]);
 
+    // Почему это не работает?
+    // foreach ($projects_rows as $project) {
+    //     $project['tasks_num'] = calculate_tasks($connection, $user_id, escape_html($project['id']));
+    // }
+
+    for ($i = 0; $i < sizeof($projects_rows); $i++) {
+        $projects_rows[$i]['tasks_num'] = calculate_tasks($connection, $user_id, escape_html($projects_rows[$i]['id']));
+    }
+
     $layout_content = include_template('layout.php', [
         'content' => $page_content,
         'projects' => $projects_rows,
